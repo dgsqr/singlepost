@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8376";
+const API_URL = "https://singlepost-ets0.onrender.com";
 const headerDate = document.getElementById("current-date");
 
 document.addEventListener("DOMContentLoaded", () => {
