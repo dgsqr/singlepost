@@ -10,6 +10,7 @@ import cors from "cors";
 const PORT = 8376;
 
 const app: Application = express();
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
 app.use(
