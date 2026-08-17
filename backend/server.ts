@@ -1,10 +1,10 @@
 import express from "express";
 import type { Application, Request, Response } from "express";
-import { prisma } from "./prisma";
+import { prisma } from "./prisma.js";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
-import { validation } from "./middlewares/validation";
-import { user } from "./middlewares/user";
+import { validation } from "./middlewares/validation.js";
+import { user } from "./middlewares/user.js";
 import { rateLimit } from "express-rate-limit";
 import cors from "cors";
 const PORT = 8376;
