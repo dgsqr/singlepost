@@ -1,0 +1,30 @@
+@import "./header.css";
+@import "./new-post.css";
+@import "./feed.css";
+
+:root {
+  --paper: #fafaf6;
+  --ink: #1b1b18;
+  --ink-soft: #6b6a63;
+  --hairline: #e3e1d9;
+  --accent: #3f5a48;
+  --accent-soft: #eaf0eb;
+  --inter: "Inter", sans-serif;
+  --ibm: "IBM Plex Mono", monospace;
+  --fraunces: "Fraunces", serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--paper);
+}
+
+main {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px 0;
+}

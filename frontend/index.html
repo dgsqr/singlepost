@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singlepost</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <button
+          id="new-post-btn"
+          class="active-btn"
+          aria-label="New Post Button"
+          onclick="changeTab('post')"
+        >
+          New post
+        </button>
+        <button
+          id="feed-btn"
+          aria-label="Go To Feed Page"
+          onclick="changeTab('feed')"
+        >
+          Feed
+        </button>
+      </nav>
+
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <h1>SINGLEPOST</h1>
+        <p id="current-date">00/00/0000</p>
+      </div>
+    </header>
+
+    <main>
+      <div id="new-post-container" style="display: block">
+        <h2 id="new-post-h2">One post per person.</h2>
+        <p id="new-post-subtitle">
+          You get a single post. It can't be edited or deleted after you send
+          it.
+        </p>
+
+        <form style="display: flex; flex-direction: column" id="main-form">
+          <div id="form-blocker" style="display: none">
+            <p>You already made a post.</p>
+            <p>One post per person.</p>
+          </div>
+          <div id="form-container">
+            <label for="username">USERNAME</label>
+            <div id="username-container">
+              <p>@</p>
+              <input
+                aria-label="Enter your username"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="your_user"
+                maxlength="30"
+              />
+            </div>
+            <textarea
+              aria-label="Enter your post content"
+              name="content"
+              id="content"
+              placeholder="Make your post..."
+              minlength="1"
+              maxlength="200"
+              required
+            ></textarea>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+              id="post-btns"
+            >
+              <p id="letter-count" aria-label="Characters left">200 left</p>
+              <button
+                aria-label="Post your content button"
+                id="post-btn"
+                disabled
+              >
+                Post
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="feed-container" style="display: none">
+        <h2>Feed</h2>
+
+        <div id="feed-cards">
+          <div id="loading-cards">
+            <svg
+              fill="#6B6A63FF"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  dur="0.75s"
+                  values="0 12 12;360 12 12"
+                  repeatCount="indefinite"
+                />
+              </path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+header {
+  font-family: var(--ibm);
+  border-bottom: 1px solid var(--hairline);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+
+  max-width: 500px;
+  margin: 0 auto;
+}
+header nav {
+  background-color: var(--hairline);
+  border-radius: 7px;
+  padding: 3px;
+  margin: 20px 0;
+  display: flex;
+  gap: 5px;
+}
+header nav button {
+  border: none;
+  background-color: transparent;
+  color: var(--ink-soft);
+  padding: 8px 15px;
+  transition: all 0.2s ease;
+
+  border-radius: 5px;
+  font-size: 0.7rem;
+}
+header nav button:hover {
+  cursor: pointer;
+}
+.active-btn {
+  background-color: var(--paper) !important;
+  color: black !important;
+}
+header div {
+  padding: 15px 0;
+  flex-shrink: 0;
+  width: 100%;
+}
+header div h1,
+header div p {
+  font-size: 0.8rem;
+  font-weight: 200;
+  color: var(--ink-soft);
+  letter-spacing: 3px;
+}

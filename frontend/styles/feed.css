@@ -1,0 +1,70 @@
+@import "./animations.css";
+
+#feed-container {
+  animation: fadeIn 0.2s forwards ease;
+}
+
+#feed-container h2 {
+  font-family: var(--fraunces);
+  font-size: 1.5rem;
+  color: var(--ink);
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+#loading-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  opacity: 0.7;
+}
+#loading-cards svg {
+  width: 30px;
+  opacity: 0.7;
+}
+
+.post {
+  border-bottom: 1px solid var(--hairline);
+  padding: 20px 20px;
+  border-radius: 5px;
+  filter: blur(4px);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.post:hover {
+  filter: blur(0);
+}
+.post-details {
+  font-family: var(--ibm);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+.post-content {
+  font-family: var(--fraunces);
+  font-size: 1.2rem;
+  line-height: 30px;
+
+  color: var(--ink);
+}
+
+.error-post {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.error-post p:first-child {
+  font-family: var(--fraunces);
+  font-size: 1.2rem;
+  color: rgb(255, 68, 68);
+  margin-bottom: 10px;
+}
+.error-post p:last-child {
+  font-family: var(--ibm);
+  font-size: 1rem;
+  color: rgb(255, 68, 68);
+  margin-bottom: 10px;
+}

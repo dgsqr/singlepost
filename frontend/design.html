@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Post — Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF6;
+    --ink:#1B1B18;
+    --ink-soft:#6B6A63;
+    --hairline:#E3E1D9;
+    --accent:#3F5A48;
+    --accent-soft:#EAF0EB;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 20px;
+  }
+
+  /* dev-only preview switcher, not part of the product design */
+  .preview-switch{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:2px;
+    background:var(--hairline);
+    padding:2px;
+    border-radius:8px;
+    z-index:10;
+  }
+  .preview-switch button{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.02em;
+    border:none;
+    background:transparent;
+    color:var(--ink-soft);
+    padding:7px 12px;
+    border-radius:6px;
+    cursor:pointer;
+  }
+  .preview-switch button.active{
+    background:var(--paper);
+    color:var(--ink);
+  }
+
+  .frame{
+    width:100%;
+    max-width:440px;
+    margin-top:56px;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.03em;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--hairline);
+    margin-bottom:36px;
+  }
+
+  .screen{display:none;}
+  .screen.active{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+  /* ---------- New post ---------- */
+  h1.title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:26px;
+    margin:0 0 6px;
+  }
+  p.sub{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:0 0 28px;
+    line-height:1.5;
+  }
+  textarea{
+    width:100%;
+    min-height:160px;
+    resize:vertical;
+    border:none;
+    border-bottom:1px solid var(--hairline);
+    background:transparent;
+    font-family:'Fraunces',serif;
+    font-size:19px;
+    line-height:1.6;
+    color:var(--ink);
+    padding:0 0 14px;
+    outline:none;
+  }
+  textarea::placeholder{color:#B9B7AC; font-style:italic;}
+  textarea:focus{border-bottom-color:var(--ink);}
+
+  .field{
+    margin-bottom:22px;
+  }
+  label{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.03em;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+    text-transform:uppercase;
+  }
+  .username-input{
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid var(--hairline);
+    padding-bottom:10px;
+  }
+  .username-input span{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-right:2px;
+  }
+  .username-input input{
+    flex:1;
+    border:none;
+    background:transparent;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:16px;
+    color:var(--ink);
+    outline:none;
+  }
+  .username-input input::placeholder{color:#B9B7AC;}
+  .username-input:focus-within{border-bottom-color:var(--ink);}
+
+  .form-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:16px;
+  }
+  .count{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .count.limit{color:#B23B3B;}
+
+  button.primary{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    padding:11px 20px;
+    border-radius:4px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  button.primary:hover{background:var(--accent);}
+  button.primary:disabled{background:var(--hairline); color:var(--ink-soft); cursor:not-allowed;}
+
+  .hint{
+    margin-top:40px;
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+
+  /* ---------- Post view ---------- */
+  .post-body{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    line-height:1.65;
+    font-weight:400;
+    margin:0 0 32px;
+  }
+  .post-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    border-top:1px solid var(--hairline);
+    padding-top:16px;
+  }
+  .mark{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:var(--accent);
+  }
+  .mark::before{
+    content:'';
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  /* ---------- Feed ---------- */
+  .feed-item{
+    border-bottom:1px solid var(--hairline);
+    padding:24px 0;
+  }
+  .feed-item:first-child{padding-top:0;}
+  .feed-item:last-child{border-bottom:none; padding-bottom:0;}
+  .feed-who{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:10px;
+  }
+  .feed-who .handle{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--ink);
+  }
+  .feed-who .time{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+  .feed-body{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    line-height:1.6;
+    margin:0;
+  }
+  .feed-item.you{
+    background:var(--accent-soft);
+    margin:0 -20px;
+    padding:24px 20px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .feed-item.you .handle{color:var(--accent);}
+
+  /* ---------- Already posted ---------- */
+  .locked{
+    text-align:left;
+  }
+  .locked h1.title{margin-bottom:14px;}
+  .locked p.sub{margin-bottom:36px;}
+  .locked-post{
+    border-left:2px solid var(--hairline);
+    padding-left:18px;
+    margin-bottom:28px;
+  }
+  .locked-post p{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:16px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    margin:0 0 10px;
+  }
+  .locked-post .post-meta{border-top:none; padding-top:0;}
+  button.ghost{
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+    font-size:13px;
+    background:transparent;
+    color:var(--ink-soft);
+    border:1px solid var(--hairline);
+    padding:9px 16px;
+    border-radius:4px;
+    cursor:pointer;
+  }
+  button.ghost:hover{border-color:var(--ink); color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div class="preview-switch">
+  <button data-target="new" class="active">New post</button>
+  <button data-target="post">Feed</button>
+  <button data-target="locked">Already posted</button>
+</div>
+
+<div class="frame">
+
+  <!-- SCREEN 1: New post -->
+  <section class="screen active" id="new">
+    <div class="eyebrow"><span>ONE POST</span><span id="dateNow">—</span></div>
+    <h1 class="title">Say your one thing.</h1>
+    <p class="sub">You get a single post. Make it count — it can't be edited after you send it.</p>
+    <div class="field">
+      <label for="username">Username</label>
+      <div class="username-input">
+        <span>@</span>
+        <input id="username" type="text" placeholder="yourname" maxlength="20">
+      </div>
+    </div>
+    <textarea id="composer" placeholder="Start writing…" maxlength="280"></textarea>
+    <div class="form-foot">
+      <span class="count" id="count">280 left</span>
+      <button class="primary" id="postBtn" disabled>Post</button>
+    </div>
+    <p class="hint">One account, one post. If you want to say something else later, this isn't the place — yet.</p>
+  </section>
+
+  <!-- SCREEN 2: Feed -->
+  <section class="screen" id="post">
+    <div class="eyebrow"><span>ONE POST</span><span id="dateNow3">—</span></div>
+    <h1 class="title" style="font-size:20px; margin-bottom:24px;">Everyone's one thing.</h1>
+
+    <div class="feed-item you">
+      <div class="feed-who"><span class="handle">@you</span><span class="time">9:41 AM</span></div>
+      <p class="feed-body">Learned today that the quietest room in the world is so silent you can hear your own blood moving.</p>
+    </div>
+
+    <div class="feed-item">
+      <div class="feed-who"><span class="handle">@marceloc</span><span class="time">9:12 AM</span></div>
+      <p class="feed-body">Made coffee for two people this morning out of habit. Drank both cups myself.</p>
+    </div>
+
+    <div class="feed-item">
+      <div class="feed-who"><span class="handle">@ines_r</span><span class="time">8:57 AM</span></div>
+      <p class="feed-body">If you can hear the ocean from your kitchen, you never really need a reason to stay.</p>
+    </div>
+
+    <div class="feed-item">
+      <div class="feed-who"><span class="handle">@dgscript</span><span class="time">8:30 AM</span></div>
+      <p class="feed-body">Spent three hours on a bug that turned out to be a missing semicolon. Worth it, somehow.</p>
+    </div>
+
+    <div class="feed-item">
+      <div class="feed-who"><span class="handle">@luna.k</span><span class="time">7:58 AM</span></div>
+      <p class="feed-body">First frost of the year. My plants did not vote for this.</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: Already posted -->
+  <section class="screen locked" id="locked">
+    <div class="eyebrow"><span>ONE POST</span><span id="dateNow2">—</span></div>
+    <h1 class="title">You've already said your thing.</h1>
+    <p class="sub">One post per person, forever — that's the whole idea. Here's what @you left behind.</p>
+    <div class="locked-post">
+      <p>"Learned today that the quietest room in the world is so silent you can hear your own blood moving."</p>
+      <div class="post-meta"><span>Posted Aug 13, 2026 · 9:41 AM</span></div>
+    </div>
+    <button class="ghost">View the feed</button>
+  </section>
+
+</div>
+
+<script>
+  // preview switching (for this demo file only)
+  const buttons = document.querySelectorAll('.preview-switch button');
+  buttons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      buttons.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
+
+  // composer logic
+  const textarea = document.getElementById('composer');
+  const username = document.getElementById('username');
+  const count = document.getElementById('count');
+  const postBtn = document.getElementById('postBtn');
+  function refreshPostBtn(){
+    postBtn.disabled = textarea.value.trim().length === 0 || username.value.trim().length === 0;
+  }
+  textarea.addEventListener('input', ()=>{
+    const left = 280 - textarea.value.length;
+    count.textContent = left + ' left';
+    count.classList.toggle('limit', left <= 20);
+    refreshPostBtn();
+  });
+  username.addEventListener('input', refreshPostBtn);
+
+  // date stamp
+  const today = new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+  document.getElementById('dateNow').textContent = today;
+  document.getElementById('dateNow2').textContent = today;
+  document.getElementById('dateNow3').textContent = today;
+</script>
+
+</body>
+</html>

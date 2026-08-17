@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Post {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique(map: "uuid") @db.Char(36)
+  ip        String    @db.VarChar(45)
+  username  String    @unique(map: "username") @db.VarChar(30)
+  content   String    @db.VarChar(200)
+  createdAt DateTime? @default(now()) @db.Timestamp(0)
+}
