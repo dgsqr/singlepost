@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { prisma } from "../prisma";
+import { prisma } from "../prisma.js";
 
 export async function validation(
   req: Request,

@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { randomUUID } from "node:crypto";
-import { prisma } from "../prisma";
+import { prisma } from "../prisma.js";
 
 export async function user(req: Request, res: Response, next: NextFunction) {
   const newUUID = randomUUID();
